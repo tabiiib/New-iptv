@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>IPTV - TABIB</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- HLS.js for browsers without native HLS or when HW Native fails -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.15/dist/hls.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-left">IPTV</div>
+    <div class="net-stats">
+      <span id="speedStat">0.00 Mbps</span>
+      <span class="dot">•</span>
+      <span id="dataStat">0.0 MB</span>
+    </div>
+    <div class="brand-right">TABIB</div>
+  </header>
+
+  <main class="app-container">
+    <!-- Left Column: Video Player & Controls -->
+    <section class="player-section" id="playerSection">
+      <div class="video-wrapper" id="videoWrapper">
+        <video id="videoPlayer" playsinline autoplay preload="auto"></video>
+        <div id="statusOverlay" class="status-overlay hidden">
+          <div class="spinner"></div>
+          <div id="statusText">Loading stream...</div>
+        </div>
+      </div>
+
+      <div class="now-playing-bar">
+        <div class="channel-meta">
+          <img id="currentLogo" src="" alt="" class="np-logo hidden" />
+          <div class="np-text">
+            <div id="currentTitle" class="np-title">Select a channel</div>
+            <div id="currentCategory" class="np-category">Ready • 6 Playlists Merged</div>
+          </div>
+        </div>
+
+        <div class="controls-row">
+          <button id="prevBtn" class="ctrl-btn" title="Previous Channel">◀ Prev</button>
+          <button id="nextBtn" class="ctrl-btn" title="Next Channel">Next ▶</button>
+          <select id="modeSelect" class="ctrl-select" title="Playback Engine">
+            <option value="auto">Auto (All Mode)</option>
+            <option value="native">HW Native (LG TV)</option>
+            <option value="hls-low">HLS Low-Buffer</option>
+            <option value="proxy">Cloudflare Proxy</option>
+          </select>
+          <button id="fullBtn" class="ctrl-btn" title="Fullscreen">⛶ Full</button>
+          <div id="liveBadge" class="live-badge">Live (Auto • HW Native)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Column: Search, Categories & Channel Grid -->
+    <section class="browser-section">
+      <div class="search-bar-row">
+        <input type="text" id="searchInput" placeholder="Search channels..." autocomplete="off" />
+        <button id="clearBtn" class="action-btn">Clear</button>
+        <button id="favFilterBtn" class="action-btn">Favourites</button>
+      </div>
+
+      <div class="category-tabs" id="categoryTabs">
+        <!-- Populated dynamically -->
+      </div>
+
+      <div class="category-header">
+        <span id="activeCategoryTitle">Loading Playlists...</span>
+        <span id="channelCount">0 channels</span>
+      </div>
+
+      <div class="channel-grid" id="channelGrid">
+        <!-- Channel cards rendered here -->
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
